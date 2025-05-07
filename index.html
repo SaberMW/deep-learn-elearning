@@ -17,15 +17,13 @@
         <li><a href="#perceptron">Perceptron</a></li>
         <li><a href="#activation-functions">Activation Functions</a></li>
         <li><a href="#multilayer-perceptrons">Multilayer perceptrons</a></li>
-        <li><a href="#backpropagation-and-gradient descent">Backpropagation & Gradient Descent</a></li>
+        <li><a href="#backpropagation-and-gradient-descent">Backpropagation & Gradient Descent</a></li>
         <li><a href="#training-mechanics">Training Mechanics</a></li>
         <li><a href="#cnns">Convolutional Neural Networks(CNNs)</a></li>
         <li><a href="#rnns-and-lstms">Sequence Models: RNNs & LSTMs</a></li>
         <li><a href="#attention-and-transformers">Attention & Transformers</a></li>
-        <li><a href="#advanced-architectures">Advanced Architectures</a></li>
-        <li><a href="#assignments">Assignments</a></li>
-        <li><a href="#quizzes">Quizzes</a></li>
-        <li><a href="#interactive">Interactive</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        
       </ul>
     </nav>
   </header>
@@ -34,9 +32,7 @@
     <!--Introduction-->
     <section id="introduction">
       <h2>1. Introduction</h2>
-      <p>
-        <h2>What is Deep Learning?</h2>
-      </p>
+        <h3>What is Deep Learning?</h3>
       <p>
         Deep learning is a branch of machine learning that uses multi-layered neural networks to automatically 
     learn rich, hierarchical representations of data. Unlike “shallow” ML models—where features must be 
@@ -68,10 +64,12 @@
         Deep Learning Introduction    
         </h3>
         <iframe
+            width="560" height="315"
             src="https://www.youtube.com/embed/PySo_6S4ZAg"
-            framborder="0" allowfullscreen>
-        </iframe>
-    
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+</iframe>
       </div>
     </section>
 
@@ -98,14 +96,13 @@
         The neuron “fires” (1) or “doesn’t” (0) based on whether the total input crosses the threshold set by <code>b</code>.
       </li>
     </ul>
-    <br/>
 
-    <h2>Perceptron demo</h2>
+    <h3>Perceptron demo</h3>
       <p class="explanation">
         Use the perceptron slider to adjust how strongly the inputs connect to the output—thicker green links mean a positive activation and thicker red links mean a negative one—so you can see how a single neuron sums its inputs. In the Backpropagation Explorer, set two inputs and a target, then click “Train Step” to watch the network tweak all its weights step by step, reducing error. These simple controls let you observe in real time how changing parameters affects both predictions and learning.
       </p>
       <!-- Interactive perceptron demo -->
-      <br/><h3>Perceptron Explorer</h3>
+      <h3>Perceptron Explorer</h3>
       <input id="weight-slider" type="range" min="-5" max="5" step="0.1" value="1"/>
       <label for="weight-slider">Weight: <span id="w-value">1.0</span></label>
       <div id="viz-perceptron"></div>
@@ -146,7 +143,7 @@
         </div>
 
         <div class="activation-item">
-          <br/><h3>Tanh</h3>
+          <h3>Tanh</h3>
           <img 
             src="assets/images/Tanh Activation.png" 
             alt="Tanh plot" 
@@ -156,7 +153,7 @@
         </div>
 
         <div class="activation-item">
-          <br/><h3>Softmax</h3>
+         <h3>Softmax</h3>
           <img 
             src="assets/images/Softmax Activation (2 Classes).png" 
             alt="Softmax plot" 
@@ -194,7 +191,7 @@
         ŷ = softmax( h · W₂ + b₂ )  // for k-way classification
           </code></pre>
         
-          <br/><h3>Choosing a Loss Function</h3>
+          <h3>Choosing a Loss Function</h3>
           <ul>
             <li>
               <strong>Mean Squared Error (MSE):</strong>  
@@ -226,14 +223,14 @@
     </section>
 
     <!--5. Backpropagation & Gradient Descent-->
-    <section id="backpropagation-and-gradient descent">
+    <section id="backpropagation-and-gradient-descent">
         <h2>5. Backpropagation &amp; Gradient Descent</h2>
 
         <p>
           To train a neural network, we need to find the best weights that minimize our error (loss). Two key ideas make this possible:
         </p>
       
-        <br/><h3>Gradient Descent: “Follow the Slope Downhill”</h3>
+       <h3>Gradient Descent: “Follow the Slope Downhill”</h3>
         <ul>
             <li>
           Imagine the loss as a hilly landscape over all possible weight values. </li>
@@ -244,7 +241,7 @@
             </li>
         </ul>
       
-        <br/><h3>Backpropagation: Passing the Error Backward</h3>
+       <h3>Backpropagation: Passing the Error Backward</h3>
         <ul>
           <li>Backpropagation is how we compute those slopes efficiently. </li> 
           <li>After doing a forward pass to get the network’s prediction and measure the loss, we “flow” the error back through each layer using the chain rule of calculus. </li> 
@@ -254,7 +251,7 @@
 
 
          <!--Backpropagation Explorer -->
-  <br/><h3>Backpropagation Explorer</h3>
+  <h3>Backpropagation Explorer</h3>
   <div id="backprop-controls">
     <label>Input 1: <input id="bp-x1" type="range" min="0" max="1" step="0.01" value="0.5"></label>
     <label>Input 2: <input id="bp-x2" type="range" min="0" max="1" step="0.01" value="0.5"></label>
@@ -299,7 +296,7 @@
           A common strategy is to start with a moderate rate (e.g. 0.01), then reduce it over time.
         </p>
       
-        <br/><h3>Batch vs. Stochastic vs. Mini-Batch Training</h3>
+        <h3>Batch vs. Stochastic vs. Mini-Batch Training</h3>
         <ul>
           <li>
             <strong>Batch Gradient Descent:</strong> uses the entire training set to compute one update per epoch.  
@@ -315,7 +312,7 @@
           </li>
         </ul>
       
-        <br/><h3>Overfitting &amp; Underfitting</h3>
+        <h3>Overfitting &amp; Underfitting</h3>
         <p>
           <strong>Underfitting</strong> happens when the model is too simple to capture the data’s patterns—training and validation losses both stay high.  
           <strong>Overfitting</strong> happens when the model memorizes training data too well—training loss is low but validation loss rises.
@@ -342,7 +339,7 @@
     that highlights where that pattern appears.
   </p>
 
-  <br/><h3>The Convolution Operation</h3>
+ <h3>The Convolution Operation</h3>
   <figure>
     <img 
       src="assets/images/CNNs from Medium.com.gif" 
@@ -365,7 +362,7 @@
     </ol>
   </p>
 
-  <br/><h3>Pooling Layers</h3>
+ <h3>Pooling Layers</h3>
   <p>
     After convolution, a pooling layer downsamples each feature map to reduce computation and build 
     <em>translation invariance</em>:
@@ -394,7 +391,7 @@
             network “remember” what it saw before (useful for text, audio, time series, etc.).
           </p>
         
-          <br/><h3>The Vanishing Gradient Problem</h3>
+         <h3>The Vanishing Gradient Problem</h3>
           <p>
             When you backpropagate through many time steps, gradients can shrink exponentially—early steps 
             hardly learn anything. This is the <strong>vanishing gradient</strong> problem, which makes 
@@ -433,14 +430,14 @@
           from anywhere in the sequence, not just its immediate neighbors.
         </p>
       
-        <br/><h3>Positional Encodings to Retain Order</h3>
+        <h3>Positional Encodings to Retain Order</h3>
         <p>
           Because Transformers have no built-in notion of order, we add <strong>positional encodings</strong> 
           to each token embedding before self-attention. These encodings inject a sense of “position” so 
           the model knows which token comes first, second, etc.
         </p>
       
-        <br/><h3>Massive Parallelism &amp; State-of-the-Art</h3>
+        <h3>Massive Parallelism &amp; State-of-the-Art</h3>
         <p>
           Unlike RNNs, Transformers process all tokens simultaneously, enabling highly parallel training 
           on modern hardware. This scalability—and the power of multi-headed attention—has made 
@@ -450,94 +447,11 @@
 
     </section>
 
-    <!--10. Advanced architectures-->
-    <section id="advanced-architectures">
-        <h2>10. Advanced Architectures</h2>
-        <p>
-            Once you’ve mastered the core layers and mechanisms, many hybrid and specialized architectures 
-            build on these foundations:
-          </p>
-          <ul>
-            <li><strong>CNN + RNN hybrids:</strong> use CNNs for frame-level feature extraction and RNNs for sequence modeling (e.g. video captioning).</li>
-            <li><strong>Vision Transformers (ViT):</strong> apply self-attention to image patches instead of pixels.</li>
-            <li><strong>Graph Neural Networks:</strong> extend convolution to graph-structured data, learning on nodes and edges.</li>
-            <li><strong>Autoencoders &amp; GANs:</strong> unsupervised models for representation learning and realistic data generation.</li>
-          </ul>
-        
-          <p>
-            <em>Want more?</em> Check out our <a href="#deep-dive">Deep Dive</a> modules for full tutorials on each of these advanced topics.
-          </p>
-    </section>
-
-    <section id="model-application">
-        <h2>12. From Model to Application</h2>
-      
-        <h3>Data Collection &amp; Preprocessing</h3>
-        <ul>
-          <li>
-            <strong>Data Collection:</strong> gather representative samples (images, text, signals) that cover all classes or scenarios you care about.
-          </li>
-          <li>
-            <strong>Cleaning &amp; Annotation:</strong> remove duplicates or corrupt examples, label your data accurately (e.g. bounding boxes, transcripts).
-          </li>
-          <li>
-            <strong>Preprocessing:</strong> normalize inputs (scale pixel values to [0,1] or zero-mean/ unit-variance), tokenize and pad text, and apply augmentations (random crops, flips) to improve robustness.
-          </li>
-          <li>
-            <strong>Train/Validation/Test Split:</strong> keep separate sets (e.g. 70/15/15) to tune hyperparameters on validation data and report final performance on unseen test data.
-          </li>
-        </ul>
-      
-        <h3>Model Evaluation Metrics</h3>
-        <ul>
-          <li>
-            <strong>Accuracy:</strong> the fraction of correct predictions. Good for balanced classes, but can be misleading if classes are imbalanced.
-          </li>
-          <li>
-            <strong>Precision &amp; Recall:</strong>  
-            <em>Precision</em> = TP / (TP+FP) measures how many predicted positives are correct.  
-            <em>Recall</em> = TP / (TP+FN) measures how many true positives you caught.  
-            Use them when false positives vs. false negatives have different costs.
-          </li>
-          <li>
-            <strong>F1 Score:</strong> the harmonic mean of precision and recall. A single number that balances both, useful for imbalanced data.
-          </li>
-        </ul>
-      
-        <h3>Deployment Basics</h3>
-        <ul>
-          <li>
-            <strong>Saving &amp; Loading Models:</strong> export your trained weights and architecture (e.g. TensorFlow SavedModel, PyTorch .pt, ONNX) for later inference.
-          </li>
-          <li>
-            <strong>Inference Speed:</strong> benchmark latency and throughput. Use optimizations like model quantization, pruning, or TensorRT for faster on-device performance.
-          </li>
-          <li>
-            <strong>Edge vs. Cloud:</strong>  
-            • <em>Edge</em>: run models on-device (mobile, IoT) for low latency and privacy.  
-            • <em>Cloud</em>: leverage scalable GPUs/TPUs for heavy workloads, but account for network delays and costs.
-          </li>
-        </ul>
-      </section>
-
-
-
-    <!-- 2. Assignments -->
-    <section id="assignments">
-      <h2>Assignments</h2>
-      <div id="assignment-container">
-        <!-- Markdown‐rendered assignment -->
-      </div>
-      <textarea id="assignment-solution" placeholder="Write your solution here…"></textarea>
-      <button id="submit-assignment">Submit</button>
-      <div id="assignment-feedback"></div>
-    </section>
-
-    <!-- 3. Interactive Quizzes -->
-    <section id="quizzes">
-      <h2>Quizzes</h2>
-      <div id="quiz-container"></div>
-      <button id="quiz-next">Next Question</button>
+    <!--10. Interactive Quizzes -->
+    <section id="quiz">
+      <h2>Quiz</h2>
+      <div id="quiz-container" aria-label="Quiz question and choices"></div>
+      <button id="quiz-next" aria-label="Next quiz question">Next Question</button>
     </section>
   
 
@@ -549,7 +463,6 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
+  
 </body>
 </html>
