@@ -84,3 +84,38 @@ section h3 {margin-top: 1.5rem;}
     cursor: pointer;
   }
   
+
+  #progress-dashboard {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+  #progress-dashboard h2 {
+    margin-top: 0;
+  }
+  .progress-container {
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 20px;
+    margin-bottom: 1rem;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #06d6a0;
+    transition: width 0.3s ease;
+  }
+  #progress-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  #progress-list li {
+    margin: 0.25rem 0;
+  }
+  #progress-list input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
