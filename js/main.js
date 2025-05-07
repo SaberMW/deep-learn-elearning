@@ -525,5 +525,28 @@ document.getElementById('show-answer').addEventListener('click', () => {
   // Initialize
   loadProgress();
 
+    // ─── Sticky TOC Highlight ───
+    const tocLinks = document.querySelectorAll('#toc a');
+    const sections = [...tocLinks].map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 120;
+      sections.forEach((sec, i) => {
+        if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+          tocLinks.forEach(a => a.classList.remove('active'));
+          tocLinks[i].classList.add('active');
+        }
+      });
+    });
+  
+    // ─── Back to Top Button ───
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  
+
 
 });

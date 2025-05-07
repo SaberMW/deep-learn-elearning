@@ -8,33 +8,33 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.0.0/dist/tf.min.js"></script>
   <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
-  <link rel="stylesheet" href="css/style.css" />
 
 </head>
 <body>
   <header>
     <h1>Deep Learning Interactive Platform</h1>
-    <nav>
-      <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#perceptron">Perceptron</a></li>
-        <li><a href="#activation-functions">Activation Functions</a></li>
-        <li><a href="#multilayer-perceptrons">Multilayer perceptrons</a></li>
-        <li><a href="#backpropagation-and-gradient-descent">Backpropagation & Gradient Descent</a></li>
-        <li><a href="#training-mechanics">Training Mechanics</a></li>
-        <li><a href="#cnns">Convolutional Neural Networks(CNNs)</a></li>
-        <li><a href="#rnns-and-lstms">Sequence Models: RNNs & LSTMs</a></li>
-        <li><a href="#attention-and-transformers">Attention & Transformers</a></li>
-        <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#coding-exercises">Coding Exercises</a></li>
-
-    
-
-    
-        
-      </ul>
-    </nav>
+ 
   </header>
+
+  <div class="layout">
+    <!-- ← This is your vertical sidebar -->
+    <aside id="toc">
+      <nav aria-label="Table of contents">
+        <ul>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#perceptron">Perceptron</a></li>
+          <li><a href="#activation-functions">Activation Functions</a></li>
+          <li><a href="#multilayer-perceptrons">Multilayer Perceptrons</a></li>
+          <li><a href="#backpropagation-and-gradient-descent">Backprop &amp; Gradient Descent</a></li>
+          <li><a href="#training-mechanics">Training Mechanics</a></li>
+          <li><a href="#cnns">CNNs</a></li>
+          <li><a href="#rnns-and-lstms">RNNs &amp; LSTMs</a></li>
+          <li><a href="#attention-and-transformers">Transformers</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#coding-exercises">Coding Exercises</a></li>
+        </ul>
+      </nav>
+    </aside>
 
   <main>
     <!-- Progress Tracking Dashboard -->
@@ -568,9 +568,13 @@
 
   </main>
 
+  </div>
+
   <footer>
     <p>&copy; 29838503_YMK_2025 Deep Learning E-Learning</p>
   </footer>
+
+  <button id="back-to-top" aria-label="Back to top">↑ Top</button>
 
   <script src="js/main.js"></script>
 
