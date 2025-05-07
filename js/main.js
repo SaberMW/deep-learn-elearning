@@ -466,6 +466,7 @@ document.getElementById('show-answer').addEventListener('click', () => {
 
       // ─── Progress Tracking Dashboard ───
   const progressSections = [
+    'introduction',
     'perceptron',
     'activation-functions',
     'multilayer-perceptrons',
