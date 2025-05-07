@@ -157,15 +157,15 @@
     <h2>3. Activation Functions</h2>
     <p>
         Neural networks need non-linear activation functions so that, when you stack many layers, 
-        the overall model can learn complex, curved decision boundaries. Below are four of the most 
+        the overall model can learn complex, curved decision boundaries. Below are three of the most 
         common activations:
     </p>
     <div class="activation-examples">
         <div class="activation-item">
           <h3>ReLU (Rectified Linear Unit)</h3>
           <img 
-            src="assets/images/ReLU Activation.png" 
-            alt="ReLU plot" 
+            src="assets/images/ReLU_CS231n-stanford-course-material.png" 
+            alt="Diagram illustrating ReLU" 
             width="750"/>
 
           <p>Simple and fast: outputs 0 for negative inputs and x for positives. Great as a default for hidden layers.</p>
@@ -174,8 +174,8 @@
         <div class="activation-item">
           <br/><h3>Sigmoid</h3>
           <img 
-            src="assets/images/Sigmoid Activation.png" 
-            alt="Sigmoid plot" 
+            src="assets/images/Sigmoid_CS231n-stanford-course-material.png" 
+            alt="Diagram illustrating Sigmoid" 
             width="750"/>
           <p>Squashes values into (0,1). Useful when you need a probability-like output, but can saturate and slow training.</p>
         </div>
@@ -183,24 +183,14 @@
         <div class="activation-item">
           <h3>Tanh</h3>
           <img 
-            src="assets/images/Tanh Activation.png" 
-            alt="Tanh plot" 
+            src="assets/images/Tanh_CS231n-stanford-course-material.png" 
+            alt="Diagram illustrating Tanh" 
             width="750"/>
 
           <p>Squashes into (−1,1), zero-centered. Often preferred over sigmoid in hidden layers, but can still saturate.</p>
         </div>
 
-        <div class="activation-item">
-         <h3>Softmax</h3>
-          <img 
-            src="assets/images/Softmax Activation (2 Classes).png" 
-            alt="Softmax plot" 
-            width="750"/>
-
-          <p>
-            Turns a vector of scores into a probability distribution over classes. Use in the output layer for multi-class classification.
-          </p>
-        </div>
+      
       </div>
 
 </section>
@@ -257,6 +247,13 @@
             alt="Diagram illustrating MLPs"
             width="750"
             />
+
+            <h3>Neural Networks Architecture</h3>
+              <img
+                src="assets/images/Neural Networks Architectures_CS231n-stanford-course-material.png"
+                alt="Diagram illustrating Neural Networks Architecture"
+                width="750"/>
+            </div>
     
     </section>
 
@@ -364,6 +361,12 @@
           You’ll see each connection’s weight change (link thickness/color) and watch the overall error shrink—one tiny downhill step at a time.
         </p>
 
+        <h3>Gradient Descent</h3>
+        <img
+          src="assets/images/Gradient Descent_CS231n-stanford-course-material.png"
+          alt="Diagram illustrating Gradient Descent"
+          width="750"/>
+
     </section>
 
     <!--6. Training Mechanics & Best Practices-->
@@ -377,6 +380,10 @@
           If <em>too small</em>, progress is painstakingly slow and may get stuck in shallow valleys.  
           A common strategy is to start with a moderate rate (e.g. 0.01), then reduce it over time.
         </p>
+        <img
+          src="assets/images/Training Mechanics from Adam Coates.png"
+          alt="Diagram illustrating training mechanics of neural networks"
+          width="750"/>
       
         <h3>Batch vs. Stochastic vs. Mini-Batch Training</h3>
         <ul>
@@ -538,29 +545,29 @@
       </button>
     </section>
 
-    <!--11. Coding Exercises-->
-    <section id="coding-exercises">
-        <h2>11. Coding Exercises</h2>
-        <p>
-            Complete the following exercise: implement the <code>sigmoid(x)</code> function so that it returns
-            <code>1 / (1 + Math.exp(-x))</code>. Type your code in the editor below and click “Run Code” for instant feedback.
-          </p>
-        
-          <!-- Code editor placeholder -->
-          <div id="code-editor" class="editor"></div>
-        
-          <!-- Run button -->
-          <button id="run-code" aria-label="Run your code in the editor">
-            Run Code
-          </button>
+     <!--11. Coding Exercises-->
+     <section id="coding-exercises">
+      <h2>11. Coding Exercises</h2>
+      <p>
+          Complete the following exercise: implement the <code>sigmoid(x)</code> function so that it returns
+          <code>1 / (1 + Math.exp(-x))</code>. Type your code in the editor below and click “Run Code” for instant feedback.
+        </p>
+      
+        <!-- Code editor placeholder -->
+        <div id="code-editor" class="editor"></div>
+      
+        <!-- Run button -->
+        <button id="run-code" aria-label="Run your code in the editor">
+          Run Code
+        </button>
 
-          <!--Show answer-->
-          <button id="show-answer" aria-label="Show the correct code solution">
-            Answer
-          </button>
-        
-          <!-- Console output -->
-          <pre id="code-output" class="console"></pre>
+        <!--Show answer-->
+        <button id="show-answer" aria-label="Show the correct code solution">
+          Answer
+        </button>
+      
+        <!-- Console output -->
+        <pre id="code-output" class="console"></pre>
         
     </section>
   
