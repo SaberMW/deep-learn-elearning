@@ -409,7 +409,7 @@ require(['vs/editor/editor.main'], () =>
   const editor = monaco.editor.create(document.getElementById('code-editor'), {
       value: `// Implement the sigmoid function
 function sigmoid(x) {
-    // YOUR CODE HERE
+    // TYPE YOUR CODE HERE
 }
 
 // Test cases
@@ -450,7 +450,15 @@ document.getElementById('run-code').addEventListener('click', () => {
   // … inside require(['vs/editor/editor.main'], () => { … })
 const solutionCode = `// Implement the sigmoid function
 function sigmoid(x) {
-  return 1 / (1 + Math.exp(-x));
+    // 1. Compute e⁻ˣ: this term shrinks toward 0 as x grows, and grows large as x is negative.
+    const expNegX = Math.exp(-x);
+    // 2. Build the denominator: 1 + e⁻ˣ shifts the midpoint to x=0.
+    const denom = 1 + expNegX;
+    // 3. Return the sigmoid value: 1 / denom maps x to (0, 1).
+    //    • x = 0 → 1/(1+1) = 0.5  
+    //    • x → +∞ → 1  
+    //    • x → -∞ → 0
+    return 1 / denom;
 }
 
 // Test cases
