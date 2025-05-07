@@ -1,6 +1,15 @@
 // js/main.js
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  window.addEventListener('load', () => {
+    // Scroll to the absolute top-left of the page
+    window.scrollTo(0, 0);
+    // Remove the hash from the URL so future reloads don't jump
+    history.replaceState(null, null, window.location.pathname + window.location.search);
+  });
+
+  
   // ─── Perceptron Explorer ───
   const width = 600, height = 300;
   const svg = d3.select('#viz-perceptron')
