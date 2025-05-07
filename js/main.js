@@ -462,4 +462,65 @@ document.getElementById('show-answer').addEventListener('click', () => {
   // Clear any previous output
   document.getElementById('code-output').textContent = '';
     });
+    
+
+      // ─── Progress Tracking Dashboard ───
+  const progressSections = [
+    'perceptron',
+    'activation-functions',
+    'multilayer-perceptrons',
+    'backpropagation-and-gradient-descent',
+    'training-mechanics',
+    'cnns',
+    'rnns-and-lstms',
+    'attention-and-transformers',
+    'quiz',
+    'coding-exercises'
+  ];
+
+  const progressList = document.getElementById('progress-list');
+  const progressBar  = document.getElementById('progress-bar');
+
+  function updateBar() {
+    const total = progressSections.length;
+    const done  = progressSections.filter(id => {
+      const cb = progressList.querySelector(`input[data-section="${id}"]`);
+      return cb && cb.checked;
+    }).length;
+    const pct = Math.round((done / total) * 100);
+    progressBar.style.width = pct + '%';
+  }
+
+  function saveProgress() {
+    const result = {};
+    progressSections.forEach(id => {
+      const cb = progressList.querySelector(`input[data-section="${id}"]`);
+      result[id] = cb.checked;
+    });
+    localStorage.setItem('dlProgress', JSON.stringify(result));
+    updateBar();
+  }
+
+  function loadProgress() {
+    const saved = JSON.parse(localStorage.getItem('dlProgress') || '{}');
+    progressSections.forEach(id => {
+      const cb = progressList.querySelector(`input[data-section="${id}"]`);
+      if (cb) cb.checked = !!saved[id];
+    });
+    updateBar();
+  }
+
+
+
+
+
+  // Hook change events on all checkboxes
+  progressList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', saveProgress);
+  });
+
+  // Initialize
+  loadProgress();
+
+
 });
