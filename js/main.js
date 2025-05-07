@@ -369,7 +369,9 @@ document.addEventListener('DOMContentLoaded', () => {
              </label></li>`
           ).join('')}
         </ul>
-        <button id="show-hint">Show Hint</button>
+        <button id="show-hint" aria-label="Show hint for this quiz question">
+             Show Hint
+            </button>
         <div class="hint" style="display:none;">${q.hint}</div>
         <div id="quiz-feedback"></div>
       `;

@@ -8,6 +8,7 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.0.0/dist/tf.min.js"></script>
   <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
 
 </head>
 <body>
@@ -127,11 +128,20 @@
 
     <h3>Perceptron demo</h3>
       <p class="explanation">
-        Use the perceptron slider to adjust how strongly the inputs connect to the output—thicker green links mean a positive activation and thicker red links mean a negative one—so you can see how a single neuron sums its inputs. In the Backpropagation Explorer, set two inputs and a target, then click “Train Step” to watch the network tweak all its weights step by step, reducing error. These simple controls let you observe in real time how changing parameters affects both predictions and learning.
+        Use the perceptron slider to adjust how strongly the inputs connect to the output—thicker green links mean a positive activation 
+        and thicker red links mean a negative one—so you can see how a single neuron sums its inputs.
       </p>
       <!-- Interactive perceptron demo -->
       <h3>Perceptron Explorer</h3>
-      <input id="weight-slider" type="range" min="-5" max="5" step="0.1" value="1"/>
+      <input
+        id="weight-slider"
+        type="range"
+        min="-5"
+        max="5"
+        step="0.1"
+        value="1"
+        aria-label="Adjust perceptron weight"
+        />
       <label for="weight-slider">Weight: <span id="w-value">1.0</span></label>
       <div id="viz-perceptron"></div>
 
@@ -281,12 +291,56 @@
          <!--Backpropagation Explorer -->
   <h3>Backpropagation Explorer</h3>
   <div id="backprop-controls">
-    <label>Input 1: <input id="bp-x1" type="range" min="0" max="1" step="0.01" value="0.5"></label>
-    <label>Input 2: <input id="bp-x2" type="range" min="0" max="1" step="0.01" value="0.5"></label>
-    <label>Target:   <input id="bp-y"  type="range" min="0" max="1" step="0.01" value="0.5"></label>
-    <label>LR:       <input id="bp-lr" type="number" min="0.001" max="1" step="0.001" value="0.1"></label>
-    <button id="bp-step">Train Step</button>
-    <button id="bp-reset">Reset</button>
+    <label for="bp-x1">Input 1:</label>
+    <input
+     id="bp-x1"
+     type="range"
+     min="0"
+     max="1"
+    step="0.01"
+     value="0.5"
+     aria-label="Backpropagation input value 1"
+    />
+
+    <label for="bp-x2">Input 2:</label>
+    <input
+    id="bp-x2"
+    type="range"
+    min="0"
+     max="1"
+     step="0.01"
+    value="0.5"
+    aria-label="Backpropagation input value 2"
+    />
+
+    <label for="bp-y">Target:</label>
+    <input
+    id="bp-y"
+    type="range"
+    min="0"
+    max="1"
+     step="0.01"
+     value="0.5"
+     aria-label="Backpropagation target value"
+    />
+
+    <label for="bp-lr">Learning Rate:</label>
+    <input
+    id="bp-lr"
+    type="number"
+    min="0.001"
+    max="1"
+    step="0.001"
+     value="0.1"
+    aria-label="Backpropagation learning rate"
+    />
+
+    <button id="bp-step" aria-label="Perform one backpropagation training step">
+     Train Step
+    </button>
+    <button id="bp-reset" aria-label="Reset backpropagation model">
+     Reset
+    </button>
   </div>
   <div id="viz-backprop"></div>
 
@@ -479,7 +533,9 @@
     <section id="quiz">
       <h2>Quiz</h2>
       <div id="quiz-container" aria-label="Quiz question and choices"></div>
-      <button id="quiz-next" aria-label="Next quiz question">Next Question</button>
+      <button id="quiz-next" aria-label="Load next quiz question">
+        Next Question
+      </button>
     </section>
 
     <!--11. Coding Exercises-->
@@ -494,10 +550,14 @@
           <div id="code-editor" class="editor"></div>
         
           <!-- Run button -->
-          <button id="run-code">Run Code</button>
+          <button id="run-code" aria-label="Run your code in the editor">
+            Run Code
+          </button>
 
           <!--Show answer-->
-          <button id="show-answer">Answer</button>
+          <button id="show-answer" aria-label="Show the correct code solution">
+            Answer
+          </button>
         
           <!-- Console output -->
           <pre id="code-output" class="console"></pre>
