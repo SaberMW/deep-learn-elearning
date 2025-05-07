@@ -6,7 +6,8 @@
   <title>Deep Learning E-Learning</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.0.0/dist/tf.min.js"></script>
+  <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
+
 </head>
 <body>
   <header>
@@ -23,6 +24,9 @@
         <li><a href="#rnns-and-lstms">Sequence Models: RNNs & LSTMs</a></li>
         <li><a href="#attention-and-transformers">Attention & Transformers</a></li>
         <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#coding-exercises">Coding Exercises</a></li>
+
+    
         
       </ul>
     </nav>
@@ -453,6 +457,28 @@
       <div id="quiz-container" aria-label="Quiz question and choices"></div>
       <button id="quiz-next" aria-label="Next quiz question">Next Question</button>
     </section>
+
+    <!--11. Coding Exercises-->
+    <section id="coding-exercises">
+        <h2>11. Coding Exercises</h2>
+        <p>
+            Complete the following exercise: implement the <code>sigmoid(x)</code> function so that it returns
+            <code>1 / (1 + Math.exp(-x))</code>. Type your code in the editor below and click “Run Code” for instant feedback.
+          </p>
+        
+          <!-- Code editor placeholder -->
+          <div id="code-editor" class="editor"></div>
+        
+          <!-- Run button -->
+          <button id="run-code">Run Code</button>
+
+          <!--Show answer-->
+          <button id="show-answer">Answer</button>
+        
+          <!-- Console output -->
+          <pre id="code-output" class="console"></pre>
+        
+    </section>
   
 
 
@@ -464,5 +490,7 @@
 
   <script src="js/main.js"></script>
   
+
+
 </body>
 </html>

@@ -61,3 +61,26 @@ section h3 {margin-top: 1.5rem;}
     position: relative;
   }
   
+
+/* Coding Exercises editor & console */
+.editor {
+    height: 300px;
+    border: 1px solid #ccc;
+    margin-bottom: 0.5rem;
+  }
+  .console {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 0.5rem;
+    height: 150px;
+    overflow-y: auto;
+    font-family: monospace;
+    margin-top: 0.5rem;
+  }
+  #run-code {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
