@@ -499,9 +499,6 @@ const progressSections = [
   'coding-exercises'
 ];
 
-const progressList = document.getElementById('progress-list');
-const progressBar  = document.getElementById('progress-bar');
-
 function updateBar() {
   const total = progressSections.length;
   const done  = progressSections.filter(id => {
@@ -531,24 +528,75 @@ function loadProgress() {
   updateBar();
 }
 
-// Initialize
-loadProgress();
-
+//Many features-----adjust later
 
 const tocLinks = document.querySelectorAll('#toc a');
-  const sections = Array.from(tocLinks)
-    .map(a => document.querySelector(a.getAttribute('href')));
+const sections = Array.from(tocLinks).map(a =>
+  document.querySelector(a.getAttribute('href'))
+);
 
-  // ─── Sticky TOC Highlight ───
-  window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY + 120;
-    sections.forEach((sec, i) => {
-      if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
-        tocLinks.forEach(a => a.classList.remove('active'));
-        tocLinks[i].classList.add('active');
+// 0) Inject a tiny sentinel after each <section>
+sections.forEach(sec => {
+  const sentinel = document.createElement('div');
+  sentinel.className           = 'section-sentinel';
+  sentinel.dataset.section     = sec.id;      // so we know which one it belongs to
+  sentinel.style.height        = '1px';       // small but measurable
+  sentinel.style.marginTop     = '0px';
+  sentinel.style.padding       = '0px';
+  sec.after(sentinel);
+});
+
+
+// 0) Scroll‐direction tracking (place near top of your DOMContentLoaded)
+let prevScrollY    = window.scrollY;
+let scrollingDown  = false;
+window.addEventListener('scroll', () => {
+  const currY = window.scrollY;
+  scrollingDown = currY > prevScrollY;
+  prevScrollY   = currY;
+});
+
+// 1) Sentinel‐based completion observer
+const completed    = new Set();
+const progressList = document.getElementById('progress-list');
+const progressBar  = document.getElementById('progress-bar');
+
+const sentinelObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    // only fire when its sentinel enters view AND we are scrolling down
+    if (entry.isIntersecting && scrollingDown) {
+      const sectionId = entry.target.dataset.section;
+      if (!completed.has(sectionId)) {
+        completed.add(sectionId);
+
+        // a) Mark the TOC link
+        const link = document.querySelector(`#toc a[href="#${sectionId}"]`);
+        link && link.classList.add('completed');
+
+        // b) Check its checkbox in the progress list
+        const cb = progressList.querySelector(`input[data-section="${sectionId}"]`);
+        if (cb) cb.checked = true;
+
+        // c) Update your visual progress bar
+        updateBar();
+
+        // d) Stop observing this sentinel
+        sentinelObserver.unobserve(entry.target);
       }
-    });
+    }
   });
+}, {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0
+});
+
+// 2) Start observing all sentinels (you should have already injected .section-sentinel after each <section>)
+document.querySelectorAll('.section-sentinel')
+  .forEach(s => sentinelObserver.observe(s));
+
+
+
 
   // ─── Back to Top Button ───
   const backToTop = document.getElementById('back-to-top');
@@ -569,34 +617,23 @@ const tocLinks = document.querySelectorAll('#toc a');
   });
 
   // 5) Fade-in sections
-  const fadeInObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        fadeInObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
+const fadeInObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeInObs.unobserve(e.target);
+    }
+  });
+}, {
+  threshold: 0,                // → trigger when even 1px is visible
+  rootMargin: '0px 0px -20px 0px'  // optional: start the fade-in 20px before section bottom
+});
+
+
   document.querySelectorAll('main section')
     .forEach(s => fadeInObs.observe(s));
 
-  // 6) Auto-mark “completed” via scroll-spy
-  const doneObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        const link = document.querySelector(`#toc a[href="#${id}"]`);
-        if (link) link.classList.add('completed');
-        updateBar();  // refresh your progress-bar
-        doneObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    root: null,
-    rootMargin: '0px 0px -60% 0px',
-    threshold: 0
-  });
-  sections.forEach(sec => sec && doneObserver.observe(sec));
+  
 });
 
 

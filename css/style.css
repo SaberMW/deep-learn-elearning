@@ -137,6 +137,7 @@ main {
      margin-right: auto; */
 }
 
+
   
   /* ─── Sidebar TOC: force vertical list ─── */
 #toc nav ul {
@@ -273,4 +274,12 @@ section.visible {
   border-radius: 4px;
 }
 
-
+main section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+main section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
