@@ -486,6 +486,7 @@ document.getElementById('code-output').textContent = '';
 
     // ─── Progress Tracking Dashboard ───
 const progressSections = [
+  'your-progress',
   'introduction',
   'perceptron',
   'activation-functions',
@@ -630,8 +631,17 @@ const fadeInObs = new IntersectionObserver((entries) => {
 });
 
 
-  document.querySelectorAll('main section')
-    .forEach(s => fadeInObs.observe(s));
+  // observe + immediately reveal any in-view on load
+document.querySelectorAll('main section').forEach(s => {
+  fadeInObs.observe(s);
+
+  // if already visible in the viewport (e.g. jumped there via anchor), show it right away
+  const rect = s.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    s.classList.add('visible');
+    fadeInObs.unobserve(s);
+  }
+});
 
   
 });
