@@ -365,7 +365,22 @@
         <img
           src="assets/images/Gradient Descent_CS231n-stanford-course-material.png"
           alt="Diagram illustrating Gradient Descent"
-          width="750"/>
+          />
+
+          <h3>Numerical gradient: </h3>
+            <ul>
+              <li>Slow: O(d) extra evaluations per parameter</li>
+              <li>Approximate: susceptible to choice of h and round-off </li>
+              <li>Easy to write: one-line finite-difference formula</li>
+            </ul>
+
+          <h3>Analytic (backprop) gradient:</h3>
+          <ul>
+            <li>Fast: same cost as one forward+backward pass</li>
+            <li>Exact: no approximation error</li>
+            <li>Error-prone: implementation bugs (chain-rule mix-ups)</li>
+          </ul>
+          
 
     </section>
 
@@ -383,7 +398,7 @@
         <img
           src="assets/images/Training Mechanics from Adam Coates.png"
           alt="Diagram illustrating training mechanics of neural networks"
-          width="750"/>
+          />
       
         <h3>Batch vs. Stochastic vs. Mini-Batch Training</h3>
         <ul>
