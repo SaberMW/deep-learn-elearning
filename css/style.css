@@ -16,7 +16,12 @@ label { display:block; margin-top:0.5rem; }
 section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; }
 section h2 { margin-bottom: 1rem; }
 section h3 {margin-top: 1.5rem;}
-  
+
+section p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
 
 
 /* Quiz */
@@ -201,3 +206,10 @@ body {
     background: #05b18b;
   }
   
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 1rem auto;
+  }
