@@ -8,6 +8,10 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.0.0/dist/tf.min.js"></script>
   <script src="https://unpkg.com/monaco-editor@0.33.0/min/vs/loader.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 
 </head>
 <body>
@@ -40,7 +44,7 @@
   <main>
     <!-- Progress Tracking Dashboard -->
     <section id="progress-dashboard">
-        <h2>Your Progress</h2>
+      <h2><i class="fas fa-tasks"></i> Your Progress</h2>
         <div class="progress-container">
           <div id="progress-bar" class="progress-bar"></div>
         </div>
@@ -61,7 +65,7 @@
 
     <!--Introduction-->
     <section id="introduction">
-      <h2>1. Introduction</h2>
+      <h2><i class="fas fa-info-circle"></i> Introduction</h2>
         <h3>What is Deep Learning?</h3>
       <p>
         Deep learning is a branch of machine learning that uses multi-layered neural networks to automatically 
@@ -88,11 +92,11 @@
         <li>On the other hand, deep learning learns features directly from data.</li>
        </ul>
 
-       <br/><h2>Video Lecture</h2>
+      <h3><i class="fas fa-video"></i> Video Lecture</h3>
+
       <div class="video-container">
-        <h3>
-        Deep Learning Introduction   
-        </h3>
+        <h3>Deep Learning Introduction</h3>
+
         <iframe
             
             src="https://www.youtube.com/embed/PySo_6S4ZAg"
@@ -105,7 +109,7 @@
 
     <!-- 2. The Perceptron: A Single Neuron -->
 <section id="perceptron">
-    <h2>2. The Perceptron: A Single Neuron</h2>
+  <h2><i class="fas fa-project-diagram"></i> Perceptron</h2>
     <p>
       A perceptron is the simplest kind of neural unit. It takes inputs <em>x₁, x₂,…, xₙ</em>, multiplies each by 
       a corresponding weight <strong>w</strong>, sums them up along with a bias term <strong>b</strong>, and then 
@@ -155,7 +159,7 @@
 
 <!--3. Activation Functions-->
 <section id="activation-functions">
-    <h2>3. Activation Functions</h2>
+  <h2><i class="fas fa-wave-square"></i> Activation Functions</h2>
     <p>
         Neural networks need non-linear activation functions so that, when you stack many layers, 
         the overall model can learn complex, curved decision boundaries. Below are three of the most 
@@ -169,7 +173,7 @@
             alt="Diagram illustrating ReLU" 
             width="750"/>
 
-          <p>Simple and fast: outputs 0 for negative inputs and x for positives. Great as a default for hidden layers.</p>
+          <li>Simple and fast: outputs 0 for negative inputs and x for positives. Great as a default for hidden layers.</li>
         </div>
         
         <div class="activation-item">
@@ -178,7 +182,7 @@
             src="assets/images/Sigmoid_CS231n-stanford-course-material.png" 
             alt="Diagram illustrating Sigmoid" 
             width="750"/>
-          <p>Squashes values into (0,1). Useful when you need a probability-like output, but can saturate and slow training.</p>
+          <li>Squashes values into (0,1). Useful when you need a probability-like output, but can saturate and slow training.</li>
         </div>
 
         <div class="activation-item">
@@ -188,7 +192,7 @@
             alt="Diagram illustrating Tanh" 
             width="750"/>
 
-          <p>Squashes into (−1,1), zero-centered. Often preferred over sigmoid in hidden layers, but can still saturate.</p>
+          <li>Squashes into (−1,1), zero-centered. Often preferred over sigmoid in hidden layers, but can still saturate.</li>
         </div>
 
       
@@ -199,7 +203,7 @@
 
 <!--4. MLPs-->
     <section id="multilayer-perceptrons">
-        <h2>4. Multilayer perceptrons</h2>
+      <h2><i class="fas fa-sitemap"></i> Multilayer Perceptrons</h2>
         <p>
             A multilayer perceptron stacks simple neurons into layers—usually an input layer, one or more hidden layers, 
             and an output layer:
@@ -255,7 +259,7 @@
                 alt="Diagram illustrating Neural Networks Architecture"
                 width="750"/>          
 
-           <h2>Video Lecture</h2>
+          <h2><i class="fas fa-video"></i> Video Lecture</h2>
             <div class="video-container">
               <h3>Introduction to Neural Networks</h3>
               <iframe
@@ -270,7 +274,7 @@
 
     <!--5. Backpropagation & Gradient Descent-->
     <section id="backpropagation-and-gradient-descent">
-        <h2>5. Backpropagation &amp; Gradient Descent</h2>
+      <h2><i class="fas fa-sync-alt"></i> Backprop & Gradient Descent</h2>
 
         <p>
           To train a neural network, we need to find the best weights that minimize our error (loss). Two key ideas make this possible:
@@ -397,7 +401,7 @@
 
     <!--6. Training Mechanics & Best Practices-->
     <section id="training-mechanics">
-        <h2>6. Training Mechanics &amp; Best Practices</h2>
+      <h2><i class="fas fa-cogs"></i> Training Mechanics</h2>
 
         <h3>Learning Rate: Too Large vs. Too Small</h3>
         <p>
@@ -443,7 +447,7 @@
 
     <!--7. Convolutional Neural Networks CNNs-->
     <section id="cnns">
-        <h2>7. Convolutional Neural Networks (CNNs)</h2>
+      <h2><i class="fas fa-th"></i> CNNs</h2>
 
   <h3>Local Receptive Fields &amp; Shared Weights</h3>
     <p>
@@ -496,9 +500,8 @@
 
     <!--8. RNNs & LSTMs-->
     <section id="rnns-and-lstms">
-        <h2>8. Sequence Models: RNNs &amp; LSTMs
+      <h2><i class="fas fa-redo"></i> RNNs & LSTMs</h2>
 
-        </h2>
         <h3>Handling Temporal Data</h3>
         <p>
             Recurrent Neural Networks (RNNs) process data one time step at a time. Each RNN cell has a 
@@ -530,7 +533,7 @@
 
     <!--9. Attention & Transformers-->
     <section id="attention-and-transformers">
-        <h2>9. Attention &amp; Transformers</h2>
+      <h2><i class="fas fa-brain"></i> Transformers</h2>
 
         <img
             src="assets/images/Attention & Transformers from Medium.com.webp"
@@ -564,7 +567,7 @@
 
     <!--10. Interactive Quizzes -->
 <section id="quiz">
-  <h2>Quiz</h2>
+  <h2><i class="fas fa-question-circle"></i> Quiz</h2>
 
   <!-- status line -->
   <div id="quiz-status" aria-live="polite"></div>
@@ -589,7 +592,7 @@
 
      <!--11. Coding Exercises-->
      <section id="coding-exercises">
-      <h2>11. Coding Exercises</h2>
+      <h2><i class="fas fa-code"></i> Coding Exercises</h2>
       <p>
           Complete the following exercise: implement the <code>sigmoid(x)</code> function so that it returns
           <code>1 / (1 + Math.exp(-x))</code>. Type your code in the editor below and click “Run Code” for instant feedback.
@@ -619,9 +622,16 @@
 
   </div>
 
-  <footer>
-    <p>&copy; 29838503_YMK_2025 Deep Learning E-Learning</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Deep Learning E-Learning Platform. All rights reserved.</p>
+      <nav>
+        <a href="#contact">Contact</a> |
+        <a href="#resources">Resources</a>
+      </nav>
+    </div>
   </footer>
+  
 
   <button id="back-to-top" aria-label="Back to top">↑ Top</button>
 

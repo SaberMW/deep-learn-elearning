@@ -4,7 +4,7 @@ body { font-family: sans-serif; line-height: 1.5; padding: 1rem; }
 h1, h2 { margin-bottom: 0.5rem; }
 
 /* Layout */
-header { background:#005f73; color:#fff; padding:1rem; }
+header {background-color: #118ab2; color: #ffffff; padding:1rem;}
 header nav ul { list-style:none; display:flex; gap:1rem; }
 #viz-perceptron { border:2px dashed #ccc; height:300px; margin-top:1rem; }
 
@@ -388,4 +388,57 @@ main section.visible {
 #show-hint:hover,
 #quiz-restart:hover {
   background-color: #f5f5f5;
+}
+
+
+@media (max-width: 768px) {
+  .site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
+
+
+:root {
+  --primary-color: #1e3a8a;
+  --secondary-color: #10b981;
+  --background-color: #f9fafb;
+  --text-color: #111827;
+}
+
+
+body {
+  font-family: 'Merriweather', serif;
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
+  color: var(--primary-color);
+}
+
+
+.section {
+  padding: 64px 0;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 32px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+
+.site-footer {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 24px 0;
+  text-align: center;
 }
