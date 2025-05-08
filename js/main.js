@@ -452,12 +452,32 @@ quizNextBtn.addEventListener('click', () => {
     // show final score
     quizScoreEl.style.display = 'block';
     quizScoreEl.textContent = `Your Score: ${score} / ${quizData.length}`;
+    // show the Try Again button
+    document.getElementById('quiz-restart').style.display = 'inline-block';
   }
 });
 
+
+// Restart the quiz when “Try Again” is clicked
+document.getElementById('quiz-restart').addEventListener('click', () => {
+  // reset pointers
+  currentQuiz = 0;
+  for (let i = 0; i < userAnswers.length; i++) {
+    userAnswers[i] = null;
+  }
+  // restore quiz UI
+  quizContainer.style.display              = 'block';
+  document.getElementById('quiz-controls').style.display = 'flex';
+  quizScoreEl.style.display                = 'none';
+  document.getElementById('quiz-restart').style.display = 'none';
+  // go back to first question
+  renderQuiz(currentQuiz);
+});
+
+
 // initial render
 renderQuiz(currentQuiz);
-})
+});
 
 
 // ─── Coding Exercises ───
