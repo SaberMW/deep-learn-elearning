@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <img
           src="assets/images/RNNs & LSTMs from Data Science Duniya.png"
           alt="RNNs & LSTMs diagram"
-          width="750"
+          
           class="quiz-diagram"
           />
           `,
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <img
           src="assets/images/CNNs from Medium.com.gif"
           alt="CNN sliding-window animation"
-          width="750"
+          
           class="quiz-diagram"
         />
       `,

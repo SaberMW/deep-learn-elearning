@@ -29,24 +29,52 @@ section p {
 .quiz-question { font-weight: bold; margin-bottom: 0.5rem; }
 .quiz-choices { list-style: none; padding-left: 0; }
 .quiz-choices li { margin-bottom: 0.5rem; }
-.hint { font-size: 0.9rem; color: #0077b6; display: none; margin-top: 0.5rem; }
+.hint { font-size: 0.8rem; color: #0077b6; display: none; margin-top: 0.5rem; }
 .correct { color: #06d6a0; }
 .incorrect { color: #ef476f; }
 
 /* Quiz status and sizing */
-#quiz-status {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-#quiz-container {
-  min-height: 200px;     /* keep box from resizing */
-  margin-bottom: 0.5rem;
-}
-#quiz-controls {
+/* 1) Make the quiz section a columnar flexbox */
+#quiz {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  height: 800px; /* total block height you want for the quiz card */
+}
+
+/* 2) Status bar at the top */
+#quiz-status {
+  flex: 0 0 auto;
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Fixed‐size quiz card with inner scrollable answers ─── */
+#quiz-container {
+  display: flex;
+  flex-direction: column;
+  height: 750px;        /* total height of your quiz card */
+  overflow: hidden;     /* prevent the whole card from growing */
+  padding-right: 0.5rem;/* room for inner scrollbar */
+}
+
+#quiz-container .quiz-question,
+#quiz-container img.quiz-diagram {
+  flex: 0 0 auto;       /* keep questions & images at natural height */
   margin-bottom: 1rem;
 }
+
+#quiz-container .quiz-diagram {
+  max-height: 280px;    /* ensure big GIFs/images fit */
+  object-fit: contain;
+}
+
+#quiz-container .quiz-choices {
+  flex: 1 1 auto;       /* take up the remaining space */
+  overflow-y: auto;     /* scroll only the answer list */
+  padding-right: 0.5rem;/* avoid hitting the card edge */
+  margin-bottom: 1rem;
+}
+
+
 #quiz-score {
   font-size: 1.1rem;
   font-weight: bold;
@@ -326,3 +354,24 @@ main section.visible {
   to   { box-shadow: 0 0 10px rgba(6, 214, 160, 0.8); }
 }
 
+/* ─── Make Show Hint & Try Again match Prev/Next size ─── */
+#quiz-controls button,
+#show-hint,
+#quiz-restart {
+  display: inline-block;
+  width: auto;           /* don’t stretch full width */
+  margin: 0.5rem 0;       /* same vertical spacing */
+  padding: 0.5rem 1rem;   /* identical click area */
+  border: 1px solid #ccc; /* match default button style */
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;          /* same font/size as surrounding text */
+}
+
+/* hover effect to match */
+#quiz-controls button:hover,
+#show-hint:hover,
+#quiz-restart:hover {
+  background-color: #f5f5f5;
+}
