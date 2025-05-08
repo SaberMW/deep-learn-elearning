@@ -6,7 +6,6 @@ h1, h2 { margin-bottom: 0.5rem; }
 /* Layout */
 header { background:#005f73; color:#fff; padding:1rem; }
 header nav ul { list-style:none; display:flex; gap:1rem; }
-main { max-width:800px; margin:2rem auto; }
 #viz-perceptron { border:2px dashed #ccc; height:300px; margin-top:1rem; }
 
 /* Slider label */
@@ -120,8 +119,20 @@ section h3 {margin-top: 1.5rem;}
   }
   
 
+ /* ─── Overall two-column layout ─── */
+.layout {
+  display: flex;
+  align-items: flex-start;
+}
  
- 
+
+/* Main content area */
+main {
+  flex: 1;               /* take remaining space */
+  max-width: 800px;      /* cap content width */
+  margin: 2rem 0;        /* vertical spacing only */
+}
+
   
   /* ─── Sidebar TOC: force vertical list ─── */
 #toc nav ul {
