@@ -269,6 +269,20 @@ body {
     margin: 1rem auto;
   }
 
+  /* ─── Responsive Video Container ─── */
+.video-container {
+  max-width: 750px;          /* cap how wide the video can grow */
+  margin: 1.5rem auto;       /* center it and give vertical breathing room */
+}
+.video-container iframe {
+  width: 100%;               /* fill that container */
+  aspect-ratio: 16 / 9;      /* let modern browsers maintain the 16:9 ratio */
+  height: auto;              /* fallback for older browsers */
+  border-radius: 4px;        /* match your image style */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
 /* ─── Reading Progress Bar ─── */
 #reading-progress {
   position: fixed;
