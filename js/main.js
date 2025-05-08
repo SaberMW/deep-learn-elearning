@@ -530,15 +530,6 @@ function loadProgress() {
   updateBar();
 }
 
-
-
-
-
-// Hook change events on all checkboxes
-progressList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener('change', saveProgress);
-});
-
 // Initialize
 loadProgress();
 
@@ -564,6 +555,63 @@ loadProgress();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+// 1) Reading progress bar
+const progBar = document.getElementById('reading-progress');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+  progBar.style.width = pct + '%';
+});
+
+// 2) Fade-in sections as they appear
+const fadeInObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeInObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+// observe all your main sections
+document.querySelectorAll('main section').forEach(s => fadeInObs.observe(s));
+
+// 3) Enhance your scroll-spy observer (which you already set up)
+//    add link completion and active highlighting inside its callback
+const tocLinks = document.querySelectorAll('#toc a');
+
+yourIntersectionObserverCallback = (entries) => {
+  entries.forEach(entry => {
+    const id = entry.target.id;
+    const link = document.querySelector(`#toc a[href="#${id}"]`);
+
+    if (entry.isIntersecting) {
+      // a) mark this section done once
+      link.classList.add('completed');
+
+      // b) highlight active link
+      tocLinks.forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+
+      // (you can still save to localStorage here if you like)
+      updateBar(); // your existing progress-bar updater
+    }
+  });
+};
+
+// make sure you use `yourIntersectionObserverCallback` when you constructed your observer
+const scrollSpy = new IntersectionObserver(yourIntersectionObserverCallback, {
+  root: null,
+  rootMargin: '0px 0px -60% 0px',
+  threshold: 0
+});
+progressSections.forEach(id => {
+  const sec = document.getElementById(id);
+  if (sec) scrollSpy.observe(sec);
+});
 
 
 });
+
+ 
