@@ -33,6 +33,27 @@ section p {
 .correct { color: #06d6a0; }
 .incorrect { color: #ef476f; }
 
+/* Quiz status and sizing */
+#quiz-status {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+#quiz-container {
+  min-height: 200px;     /* keep box from resizing */
+  margin-bottom: 0.5rem;
+}
+#quiz-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+#quiz-score {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #118ab2;
+}
+
+
 
 /* Backpropagation viz */
 #backprop-controls {

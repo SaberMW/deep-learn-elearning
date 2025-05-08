@@ -553,13 +553,25 @@
     </section>
 
     <!--10. Interactive Quizzes -->
-    <section id="quiz">
-      <h2>Quiz</h2>
-      <div id="quiz-container" aria-label="Quiz question and choices"></div>
-      <button id="quiz-next" aria-label="Load next quiz question">
-        Next Question
-      </button>
-    </section>
+<section id="quiz">
+  <h2>Quiz</h2>
+
+  <!-- status line -->
+  <div id="quiz-status" aria-live="polite"></div>
+
+  <!-- question + choices -->
+  <div id="quiz-container" aria-label="Quiz question and choices"></div>
+
+  <!-- controls -->
+  <div id="quiz-controls">
+    <button id="quiz-prev" aria-label="Previous question" disabled>Previous</button>
+    <button id="quiz-next" aria-label="Next question">Next</button>
+  </div>
+
+  <!-- final score -->
+  <div id="quiz-score" aria-live="polite" style="display:none;"></div>
+</section>
+
 
      <!--11. Coding Exercises-->
      <section id="coding-exercises">

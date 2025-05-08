@@ -363,53 +363,101 @@ document.addEventListener('DOMContentLoaded', () => {
     // … include all 20 questions here exactly as discussed …
   ];
 
-  let currentQuiz = 0;
-  const quizContainer = document.getElementById('quiz-container');
-  const quizNextBtn  = document.getElementById('quiz-next');
+  let currentQuiz  = 0;
+const userAnswers = Array(quizData.length).fill(null);
 
-  function renderQuiz(idx) {
-    const q = quizData[idx];
-    quizContainer.innerHTML = `
-      <div class="quiz-question">${q.question}</div>
-      <ul class="quiz-choices">
-        ${q.choices.map((c,i)=>
-          `<li><label>
-             <input type="radio" name="choice" value="${i}" />
-             ${c}
-           </label></li>`
-        ).join('')}
-      </ul>
-      <button id="show-hint" aria-label="Show hint for this quiz question">
-           Show Hint
-          </button>
-      <div class="hint" style="display:none;">${q.hint}</div>
-      <div id="quiz-feedback"></div>
-    `;
-    document.getElementById('show-hint').onclick = () => {
-      quizContainer.querySelector('.hint').style.display = 'block';
-    };
-    quizContainer.querySelectorAll('input[name="choice"]')
-      .forEach(radio => radio.addEventListener('change', e => {
-        const picked = +e.target.value;
-        const fb = document.getElementById('quiz-feedback');
-        if (picked === q.answer) {
-          fb.textContent = '✅ Correct!';
-          fb.className = 'correct';
-        } else {
-          fb.textContent = '❌ Try again.';
-          fb.className = 'incorrect';
-        }
-      }));
+const quizStatus    = document.getElementById('quiz-status');
+const quizContainer = document.getElementById('quiz-container');
+const quizPrevBtn   = document.getElementById('quiz-prev');
+const quizNextBtn   = document.getElementById('quiz-next');
+const quizScoreEl   = document.getElementById('quiz-score');
+
+function renderQuiz(idx) {
+  const q = quizData[idx];
+
+  // 1) Status line
+  quizStatus.textContent = `Question ${idx+1} of ${quizData.length}`;
+
+  // 2) Build question + choices
+  quizContainer.innerHTML = `
+    <div class="quiz-question">${q.question}</div>
+    <ul class="quiz-choices">
+      ${q.choices.map((c,i)=>`
+        <li>
+          <label>
+            <input type="radio" name="choice" value="${i}" />
+            ${c}
+          </label>
+        </li>`).join('')}
+    </ul>
+    <button id="show-hint">Show Hint</button>
+    <div class="hint" style="display:none;">${q.hint}</div>
+    <div id="quiz-feedback"></div>
+  `;
+
+  // 3) Pre-select if they already answered
+  if (userAnswers[idx] !== null) {
+    const radio = quizContainer.querySelectorAll('input[name="choice"]')[userAnswers[idx]];
+    if (radio) radio.checked = true;
   }
 
-  quizNextBtn.addEventListener('click', () => {
-    currentQuiz = (currentQuiz + 1) % quizData.length;
-    renderQuiz(currentQuiz);
-  });
+  // 4) Hook hint button
+  quizContainer.querySelector('#show-hint').onclick = () => {
+    quizContainer.querySelector('.hint').style.display = 'block';
+  };
 
-  // Render first question:
-  renderQuiz(currentQuiz);
+  // 5) Feedback & record answer
+  quizContainer.querySelectorAll('input[name="choice"]')
+    .forEach(radio => radio.addEventListener('change', e => {
+      const picked = +e.target.value;
+      userAnswers[idx] = picked;
+      const fb = quizContainer.querySelector('#quiz-feedback');
+      if (picked === q.answer) {
+        fb.textContent = '✅ Correct!';
+        fb.className = 'correct';
+      } else {
+        fb.textContent = '❌ Try again.';
+        fb.className = 'incorrect';
+      }
+    }));
+
+  // 6) Previous / Next button states
+  quizPrevBtn.disabled = idx === 0;
+  quizNextBtn.textContent = (idx === quizData.length - 1 ? 'Submit' : 'Next');
+}
+
+// move to previous question
+quizPrevBtn.addEventListener('click', () => {
+  if (currentQuiz > 0) {
+    currentQuiz--;
+    renderQuiz(currentQuiz);
+  }
 });
+
+// move to next or submit
+quizNextBtn.addEventListener('click', () => {
+  if (currentQuiz < quizData.length - 1) {
+    currentQuiz++;
+    renderQuiz(currentQuiz);
+  } else {
+    // compute score
+    const score = userAnswers.reduce(
+      (sum, ans, i) => sum + (ans === quizData[i].answer ? 1 : 0),
+      0
+    );
+    // hide quiz UI
+    quizStatus.textContent = 'Quiz Completed!';
+    quizContainer.style.display = 'none';
+    document.getElementById('quiz-controls').style.display = 'none';
+    // show final score
+    quizScoreEl.style.display = 'block';
+    quizScoreEl.textContent = `Your Score: ${score} / ${quizData.length}`;
+  }
+});
+
+// initial render
+renderQuiz(currentQuiz);
+})
 
 
 // ─── Coding Exercises ───
@@ -655,4 +703,3 @@ document.querySelectorAll('main section').forEach(s => {
 
 
 
- 
