@@ -276,3 +276,27 @@ main section.visible {
 }
 
 
+/* Celebration style for when the user finishes everything */
+#progress-dashboard.all-complete {
+  animation: pulse 1s ease-in-out infinite alternate;
+  background-color: #e6fffa; /* a light green tint */
+  border-color: #06d6a0;
+  position: relative;
+}
+
+/* optional “🎉 All Done!” badge */
+#progress-dashboard.all-complete::after {
+  content: "🎉 All Sections Complete!";
+  position: absolute;
+  top: -1.5rem;
+  right: 0;
+  font-size: 0.9rem;
+  color: #118ab2;
+}
+
+/* keyframes for a soft pulse */
+@keyframes pulse {
+  from { box-shadow: 0 0 0 rgba(6, 214, 160, 0.5); }
+  to   { box-shadow: 0 0 10px rgba(6, 214, 160, 0.8); }
+}
+

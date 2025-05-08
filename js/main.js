@@ -486,7 +486,6 @@ document.getElementById('code-output').textContent = '';
 
     // ─── Progress Tracking Dashboard ───
 const progressSections = [
-  'your-progress',
   'introduction',
   'perceptron',
   'activation-functions',
@@ -508,6 +507,14 @@ function updateBar() {
   }).length;
   const pct = Math.round((done / total) * 100);
   progressBar.style.width = pct + '%';
+
+   // ← NEW: when fully complete, add a class on the dashboard
+   const dash = document.getElementById('progress-dashboard');
+   if (pct === 100) {
+     dash.classList.add('all-complete');
+   } else {
+     dash.classList.remove('all-complete');
+   }
 }
 
 function saveProgress() {
