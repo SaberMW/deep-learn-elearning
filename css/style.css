@@ -442,3 +442,36 @@ h1, h2, h3, h4 {
   padding: 24px 0;
   text-align: center;
 }
+
+/* Supplementary Resources & References */
+#references {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+#references h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  /* you can add an icon here, e.g.: */
+  /* background: url('/path/to/icon-book.svg') no-repeat left center;
+     padding-left: 2rem; */
+}
+.references-list {
+  list-style: none;
+  padding-left: 0;
+}
+.references-list li {
+  margin-bottom: 0.5rem;
+}
+.references-list a {
+  color: #118ab2;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.references-list a:hover {
+  color: #0a5c7a;
+  text-decoration: underline;
+}
