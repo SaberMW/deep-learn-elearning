@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   
-  // ─── Perceptron Explorer ───
+  // Perceptron Explorer Demo
   const width = 600, height = 300;
   const svg = d3.select('#viz-perceptron')
     .append('svg').attr('width', width).attr('height', height);
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePerceptron(+weightSlider.value);
 
 
-  // ─── Backpropagation Explorer ───
+  //Backpropagation Explorer demo
   const bpWidth = 600, bpHeight = 350;
   const svgBP = d3.select('#viz-backprop')
     .append('svg').attr('width', bpWidth).attr('height', bpHeight);
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // ─── Quiz Engine ───
+  //Quiz
   const quizData = [
     { question: "1. What makes deep learning different from traditional machine learning?",
       choices: [
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <img
           src="assets/images/RNNs & LSTMs from Data Science Duniya.png"
           alt="RNNs & LSTMs diagram"
-          
+        
           class="quiz-diagram"
           />
           `,
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
       answer: 1,
       hint: "Since self-attention is order-agnostic."
     }
-    // … include all 20 questions here exactly as discussed …
+  
   ];
 
   let currentQuiz  = 0;
@@ -375,10 +375,10 @@ const quizScoreEl   = document.getElementById('quiz-score');
 function renderQuiz(idx) {
   const q = quizData[idx];
 
-  // 1) Status line
+  //Status line
   quizStatus.textContent = `Question ${idx+1} of ${quizData.length}`;
 
-  // 2) Build question + choices
+  //Build question + choices
   quizContainer.innerHTML = `
     <div class="quiz-question">${q.question}</div>
     <ul class="quiz-choices">
@@ -395,18 +395,18 @@ function renderQuiz(idx) {
     <div id="quiz-feedback"></div>
   `;
 
-  // 3) Pre-select if they already answered
+  //Pre-select if they already answered
   if (userAnswers[idx] !== null) {
     const radio = quizContainer.querySelectorAll('input[name="choice"]')[userAnswers[idx]];
     if (radio) radio.checked = true;
   }
 
-  // 4) Hook hint button
+  //Hook hint button
   quizContainer.querySelector('#show-hint').onclick = () => {
     quizContainer.querySelector('.hint').style.display = 'block';
   };
 
-  // 5) Feedback & record answer
+  //Feedback & record answer
   quizContainer.querySelectorAll('input[name="choice"]')
     .forEach(radio => radio.addEventListener('change', e => {
       const picked = +e.target.value;
@@ -421,12 +421,12 @@ function renderQuiz(idx) {
       }
     }));
 
-  // 6) Previous / Next button states
+  //Previous / Next button states
   quizPrevBtn.disabled = idx === 0;
   quizNextBtn.textContent = (idx === quizData.length - 1 ? 'Submit' : 'Next');
 }
 
-// move to previous question
+//move to previous question
 quizPrevBtn.addEventListener('click', () => {
   if (currentQuiz > 0) {
     currentQuiz--;
@@ -480,7 +480,7 @@ renderQuiz(currentQuiz);
 });
 
 
-// ─── Coding Exercises ───
+//Coding Exercises
 require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@0.33.0/min/vs' }});
 require(['vs/editor/editor.main'], () => 
   {
@@ -520,12 +520,12 @@ document.getElementById('run-code').addEventListener('click', () => {
     // Show results
     outputEl.textContent = logs.length ? logs.join('\n') : 'No output';
   } catch (err) {
-    console.log = originalLog;  // ensure we restore on error
+    console.log = originalLog;  
     outputEl.textContent = 'Error: ' + err.message;
   }
 });
 
-  // … inside require(['vs/editor/editor.main'], () => { … })
+
 const solutionCode = `// Implement the sigmoid function
 function sigmoid(x) {
     // 1. Compute e⁻ˣ: this term shrinks toward 0 as x grows, and grows large as x is negative.
@@ -552,7 +552,7 @@ document.getElementById('code-output').textContent = '';
   });
   
 
-    // ─── Progress Tracking Dashboard ───
+    // Progress Tracking Dashboard 
 const progressSections = [
   'introduction',
   'perceptron',
@@ -576,7 +576,7 @@ function updateBar() {
   const pct = Math.round((done / total) * 100);
   progressBar.style.width = pct + '%';
 
-   // ← NEW: when fully complete, add a class on the dashboard
+   //NEW: when fully complete, add a class on the dashboard
    const dash = document.getElementById('progress-dashboard');
    if (pct === 100) {
      dash.classList.add('all-complete');
@@ -611,19 +611,19 @@ const sections = Array.from(tocLinks).map(a =>
   document.querySelector(a.getAttribute('href'))
 );
 
-// 0) Inject a tiny sentinel after each <section>
+//Inject a tiny sentinel after each <section>
 sections.forEach(sec => {
   const sentinel = document.createElement('div');
   sentinel.className           = 'section-sentinel';
-  sentinel.dataset.section     = sec.id;      // so we know which one it belongs to
-  sentinel.style.height        = '1px';       // small but measurable
+  sentinel.dataset.section     = sec.id;      
+  sentinel.style.height        = '1px';       
   sentinel.style.marginTop     = '0px';
   sentinel.style.padding       = '0px';
   sec.after(sentinel);
 });
 
 
-// 0) Scroll‐direction tracking (place near top of your DOMContentLoaded)
+//Scroll‐direction tracking
 let prevScrollY    = window.scrollY;
 let scrollingDown  = false;
 window.addEventListener('scroll', () => {
@@ -632,31 +632,31 @@ window.addEventListener('scroll', () => {
   prevScrollY   = currY;
 });
 
-// 1) Sentinel‐based completion observer
+//Sentinel‐based completion observer
 const completed    = new Set();
 const progressList = document.getElementById('progress-list');
 const progressBar  = document.getElementById('progress-bar');
 
 const sentinelObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    // only fire when its sentinel enters view AND we are scrolling down
+    // only fire when its sentinel enters view AND user scrolling down
     if (entry.isIntersecting && scrollingDown) {
       const sectionId = entry.target.dataset.section;
       if (!completed.has(sectionId)) {
         completed.add(sectionId);
 
-        // a) Mark the TOC link
+        //Mark the TOC link
         const link = document.querySelector(`#toc a[href="#${sectionId}"]`);
         link && link.classList.add('completed');
 
-        // b) Check its checkbox in the progress list
+        //Check its checkbox in the progress list
         const cb = progressList.querySelector(`input[data-section="${sectionId}"]`);
         if (cb) cb.checked = true;
 
-        // c) Update your visual progress bar
+        //Update visual progress bar
         updateBar();
 
-        // d) Stop observing this sentinel
+        //Stop observing this sentinel
         sentinelObserver.unobserve(entry.target);
       }
     }
@@ -667,14 +667,14 @@ const sentinelObserver = new IntersectionObserver((entries) => {
   threshold: 0
 });
 
-// 2) Start observing all sentinels (you should have already injected .section-sentinel after each <section>)
+//Start observing all sentinels
 document.querySelectorAll('.section-sentinel')
   .forEach(s => sentinelObserver.observe(s));
 
 
 
 
-  // ─── Back to Top Button ───
+  //Back to Top Button
   const backToTop = document.getElementById('back-to-top');
   window.addEventListener('scroll', () => {
     backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
@@ -683,7 +683,7 @@ document.querySelectorAll('.section-sentinel')
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-// 4) Reading progress bar
+//Reading progress bar
   const progBar = document.getElementById('reading-progress');
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -692,7 +692,7 @@ document.querySelectorAll('.section-sentinel')
     progBar.style.width = pct + '%';
   });
 
-  // 5) Fade-in sections
+  // Fade-in sections
 const fadeInObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -701,16 +701,15 @@ const fadeInObs = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 0,                // → trigger when even 1px is visible
-  rootMargin: '0px 0px -20px 0px'  // optional: start the fade-in 20px before section bottom
+  threshold: 0,                //trigger when even 1px is visible
+  rootMargin: '0px 0px -20px 0px' 
 });
 
 
-  // observe + immediately reveal any in-view on load
 document.querySelectorAll('main section').forEach(s => {
   fadeInObs.observe(s);
 
-  // if already visible in the viewport (e.g. jumped there via anchor), show it right away
+ 
   const rect = s.getBoundingClientRect();
   if (rect.top < window.innerHeight && rect.bottom > 0) {
     s.classList.add('visible');

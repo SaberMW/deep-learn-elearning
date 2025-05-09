@@ -1,4 +1,4 @@
-/* Reset & typography */
+/*Reset & typography */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: sans-serif; line-height: 1.5; padding: 1rem; }
 h1, h2 { margin-bottom: 0.5rem; }
@@ -34,24 +34,24 @@ section p {
 .incorrect { color: #ef476f; }
 
 /* Quiz status and sizing */
-/* 1) Make the quiz section a columnar flexbox */
+/* 1. Make the quiz section a columnar flexbox */
 #quiz {
   display: flex;
   flex-direction: column;
-  height: 800px; /* total block height you want for the quiz card */
+  height: 800px; /* total block height for block size issue */
 }
 
-/* 2) Status bar at the top */
+/* 2. Status bar at the top */
 #quiz-status {
   flex: 0 0 auto;
   margin-bottom: 0.5rem;
 }
 
-/* ─── Fixed‐size quiz card with inner scrollable answers ─── */
+/*Fixed‐size quiz card with inner scrollable answers*/
 #quiz-container {
   display: flex;
   flex-direction: column;
-  height: 750px;        /* total height of your quiz card */
+  height: 750px;        /* total height of quiz card */
   overflow: hidden;     /* prevent the whole card from growing */
   padding-right: 0.5rem;/* room for inner scrollbar */
 }
@@ -165,7 +165,7 @@ section p {
   }
   
 
- /* ─── Reset & Base ─── */
+ /*Reset & Base*/
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: sans-serif;
@@ -173,7 +173,7 @@ body {
   padding: 1rem;
 }
 
-/* ─── Overall two-column layout ─── */
+/*Overall two-column layout*/
 .layout {
   display: flex;
   align-items: flex-start;
@@ -181,19 +181,16 @@ body {
 }
 
 
-/* ─── Main content area ─── */
+/* Main content area*/
 main {
   flex: 1;                /* fill remaining space */
   margin: 2rem 0;         /* vertical only */
-  /* if you DO want to cap your content at 800px, uncomment: */
-  /* max-width: 800px;
-     margin-left: auto;
-     margin-right: auto; */
+  
 }
 
 
   
-  /* ─── Sidebar TOC: force vertical list ─── */
+  /* Sidebar TOC: force vertical list*/
 #toc nav ul {
     list-style: none;    /* remove bullets */
     padding: 0;
@@ -216,21 +213,21 @@ main {
     border-left: 4px solid #06d6a0;
   }
   
-  /* 1) Pin the sidebar to the left */
+  /*Pin the sidebar to the left */
 #toc {
     position: fixed;               /* lock it in place */
     top: 1rem;                     /* spacing from top */
     left: 1rem;                    /* spacing from left */
-    width: 200px;                  /* same as before */
+    width: 200px;                 
     max-height: calc(100vh - 2rem);/* fit in viewport */
-    overflow-y: auto;              /* allow scrolling if needed */
+    overflow-y: auto;              
     background: #fff;              /* match page bg */
     border-right: 1px solid #ddd;
     padding-right: 1rem;
     z-index: 500;
   }
   
-  /* 2) Make room for the fixed sidebar */
+  /*Make room for the fixed sidebar */
   main {
     margin-left: 0;            /* sidebar width + gap */
   }
@@ -269,21 +266,21 @@ body {
     margin: 1rem auto;
   }
 
-  /* ─── Responsive Video Container ─── */
+  /*Responsive Video Container */
 .video-container {
-  max-width: 750px;          /* cap how wide the video can grow */
+  max-width: 750px;          
   margin: 1.5rem auto;       /* center it and give vertical breathing room */
 }
 .video-container iframe {
   width: 100%;               /* fill that container */
   aspect-ratio: 16 / 9;      /* let modern browsers maintain the 16:9 ratio */
   height: auto;              /* fallback for older browsers */
-  border-radius: 4px;        /* match your image style */
+  border-radius: 4px;        
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 
-/* ─── Reading Progress Bar ─── */
+/*Reading Progress Bar*/
 #reading-progress {
   position: fixed;
   top: 0; left: 0;
@@ -296,7 +293,7 @@ body {
 
 
 
-/* ─── TOC Completion Dots ─── */
+/* TOC Completion Dots*/
 #toc a {
   position: relative;
   padding-left: 1.5rem;
@@ -325,7 +322,7 @@ body {
   transform: translateY(-50%);
 }
 
-/* ─── Active TOC Highlight ─── */
+/*Active TOC Highlight*/
 #toc a.active {
   font-weight: bold;
   color: #118ab2;
@@ -352,7 +349,7 @@ main section.visible {
   position: relative;
 }
 
-/* optional “🎉 All Done!” badge */
+/*“🎉 All Done!” badge */
 #progress-dashboard.all-complete::after {
   content: "🎉 All Sections Complete!";
   position: absolute;
@@ -368,7 +365,7 @@ main section.visible {
   to   { box-shadow: 0 0 10px rgba(6, 214, 160, 0.8); }
 }
 
-/* ─── Make Show Hint & Try Again match Prev/Next size ─── */
+/* Make Show Hint & Try Again match Prev/Next size*/
 #quiz-controls button,
 #show-hint,
 #quiz-restart {
@@ -455,9 +452,6 @@ h1, h2, h3, h4 {
   margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
-  /* you can add an icon here, e.g.: */
-  /* background: url('/path/to/icon-book.svg') no-repeat left center;
-     padding-left: 2rem; */
 }
 .references-list {
   list-style: none;
